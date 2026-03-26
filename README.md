@@ -28,7 +28,4 @@ Future Enhancements
 2.Implement wait time monitoring  
 3.Integrate with mobile app APIs  
 4.Add weather impact analysis  
-  
-Rights Reserved To:  
-B.Anjaneyulu  
-mail-baikanianji@gmail.com
+
