@@ -1,0 +1,31 @@
+name: Validate amusement park SQLite companion
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build the demonstration database
+        run: python build_demo.py
+      - name: Check Python source and execute database tests
+        run: |
+          python -m compileall -q build_demo.py tests
+          python -m unittest discover -s tests -v
+      - name: Upload runnable SQLite database
+        uses: actions/upload-artifact@v4
+        with:
+          name: amusement-park-sqlite-demo
+          path: amusement_park_demo.sqlite
+          if-no-files-found: error
