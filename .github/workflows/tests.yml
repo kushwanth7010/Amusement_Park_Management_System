@@ -11,10 +11,10 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.11'
       - name: Build the demonstration database
@@ -24,7 +24,7 @@ jobs:
           python -m compileall -q build_demo.py tests
           python -m unittest discover -s tests -v
       - name: Upload runnable SQLite database
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: amusement-park-sqlite-demo
           path: amusement_park_demo.sqlite
